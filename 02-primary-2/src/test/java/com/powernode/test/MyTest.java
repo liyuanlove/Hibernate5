@@ -130,9 +130,7 @@ public class MyTest {
 
     /**
      * get()与load()方法的共同点：根据id加载对象
-     * get()与load()方法的区别：
-     * get()：若加载的对象不存在，则返回null
-     * load()：若加载的对象不存在，则抛出异常
+     * get()与load()方法的区别：get()：若加载的对象不存在，则返回null；load()：若加载的对象不存在，则抛出异常
      */
     @Test
     public void testLoad() {
@@ -158,7 +156,7 @@ public class MyTest {
         //1.获取Session对象
         Session session = HibernateUtils.getSession();
         //2.执行操作
-        //通过getCurrentSession()获取到的session所执行的查询，必须在事务环境下运行
+        //通过getCurrentSession()获取Session对象后所执行的查询，必须在事务环境下运行
         Student student = session.load(Student.class, 2);
         System.out.println(student);
     }
@@ -168,7 +166,7 @@ public class MyTest {
         //1.获取Session对象
         Session session = HibernateUtils.getSessionFactory().openSession();
         //2.执行操作
-        //通过openSession()获取到的session所执行的查询，无须一定在事务环境下运行
+        //通过openSession()获取Session对象后所执行的查询，无须在事务环境下运行
         Student student = session.load(Student.class, 2);
         System.out.println(student);
     }
@@ -185,7 +183,7 @@ public class MyTest {
             //删除
             Student student = session.get(Student.class, 5);
             session.delete(student);
-            //刷新session缓存
+            //刷新Session缓存
             session.flush();
             //插入
             Student student2 = new Student("王五", 25, 95.5);

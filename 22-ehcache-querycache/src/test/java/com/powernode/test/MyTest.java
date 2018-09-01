@@ -60,7 +60,7 @@ public class MyTest {
             //第二次查询
             Country country2 = session.get(Country.class, 2);
             System.out.println("country2 = " + country2);
-            //清空session缓存
+            //清空Session缓存
             session.clear();
             //第三次查询
             Country country3 = session.get(Country.class, 2);
@@ -90,7 +90,7 @@ public class MyTest {
             //第二次查询
             Country country2 = (Country) session.createQuery(hql).uniqueResult();
             System.out.println("country2 = " + country2);
-            //清空session缓存
+            //清空Session缓存
             session.clear();
             //第三次查询
             Country country3 = (Country) session.createQuery(hql).uniqueResult();
@@ -120,7 +120,7 @@ public class MyTest {
             //第二次查询
             Country country2 = (Country) session.createQuery(hql).setCacheable(true).uniqueResult();
             System.out.println("country2 = " + country2);
-            //清空session缓存
+            //清空Session缓存
             session.clear();
             //第三次查询
             Country country3 = (Country) session.createQuery(hql).setCacheable(true).uniqueResult();
@@ -134,8 +134,7 @@ public class MyTest {
         }
     }
 
-    //演示Query缓存内容：其从Query缓存中查找的一句不再是查询结果对象的id，而是Query查询语句。
-    //也就是说，Query查询结果，存放到Query缓存时，其key为Query的查询语句，value为查询结果。
+    //演示Query缓存内容：从Query缓存中查找的依据不再是查询结果对象的id，而是Query查询语句；也就是说，Query查询结果存放到Query缓存时，其key为Query查询语句，value为Query查询结果。
     @Test
     public void test04() {
         //1.获取Session对象
@@ -152,7 +151,7 @@ public class MyTest {
             String hql2 = "from Country where cid in (2)";
             Country country2 = (Country) session.createQuery(hql2).setCacheable(true).uniqueResult();
             System.out.println("country2 = " + country2);
-            //清空session缓存
+            //清空Session缓存
             session.clear();
             //第三次查询
             String hql3 = "from Country where cid like 2";
@@ -185,11 +184,10 @@ public class MyTest {
             System.out.println("更新后 country2.name = " + country2.getCname());
             session.clear();
             /*
-             * 按照之前的学习理论，这里的get()查询，会先查找一级缓存，结果没有；再查找二级缓存，结果是有的。
+             * 按照之前的学习理论，这里的get()查询，会先查找一级缓存，结果是没有；再查找二级缓存，结果是有的。
              * 但为什么没有从二级缓存读取这个数据，而是从数据库中进行了查询？
-             * 因为Query的executeUpdate()方法，会修改二级缓存对象中的一个属性：updateTimestamp，修改时间戳。
-             * 什么意思呢？实际上二级缓存对象中缓存的内容，要比一级缓存内容多一个属性，即修改时间戳。
-             * 一旦这个属性被修改，那么查询会不从二级缓存中读取数据，而是直接从数据库中查询。
+             * 因为Query的executeUpdate()方法，会修改二级缓存对象中的一个属性：updateTimestamp。
+             * 实际上二级缓存对象中缓存的内容，要比一级缓存内容多一个属性，即修改时间戳；一旦这个属性被修改，那么查询会不从二级缓存中读取数据，而是直接从数据库中查询。
              */
             Country country3 = session.get(Country.class, 2);
             System.out.println("二级缓存 country3.name = " + country3.getCname());

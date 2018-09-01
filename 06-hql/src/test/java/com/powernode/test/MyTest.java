@@ -84,7 +84,7 @@ public class MyTest {
             //2.开启事务
             session.beginTransaction();
             //3.执行操作
-            String sql = "select * from t_student order by tage desc";//升序：asc，默认
+            String sql = "select * from t_student order by tage desc";
             List<Student> list = session.createNativeQuery(sql).addEntity(Student.class).list();
             for (Student student : list) {
                 System.out.println(student);
@@ -150,7 +150,7 @@ public class MyTest {
             //2.开启事务
             session.beginTransaction();
             //3.执行操作
-            //别名: 要求必须以冒号开头
+            //别名：要求必须以冒号开头
             String hql = "from Student where age>:myage and score<:myscore";
             List<Student> list = session.createQuery(hql).setParameter("myage", Integer.valueOf(20)).setParameter("myscore", Double.valueOf(94)).list();
             for (Student student : list) {

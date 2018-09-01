@@ -40,8 +40,7 @@ public class Minister {
         this.country = country;
     }
 
-    //双向关联在定义toString()时，要求只有一方可以输出对方
-    //若双方均可输出对象，则会形成递归调用，会出错
+    //双向关联在定义toString()时，要求只有一方可以输出对方；若双方均可输出对象，则会形成递归调用，会出错。
     @Override
     public String toString() {
         return "Minister [mid=" + mid + ", mname=" + mname + "]";

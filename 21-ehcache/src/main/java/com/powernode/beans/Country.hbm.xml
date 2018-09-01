@@ -9,7 +9,7 @@
         </id>
         <property name="cname"/>
         <set name="ministers" cascade="save-update" fetch="subselect" lazy="true">
-            <!--指定该集合为缓存对象, 即集合缓存-->
+            <!--指定该集合为缓存对象，即集合缓存-->
             <!--<cache usage="read-only"/>-->
             <key column="countryId"/>
             <one-to-many class="Minister"/>

@@ -20,8 +20,7 @@ public class Country {
     private Integer cid;
     private String cname;
     //关联属性
-    //mappedBy的设置表示当前的one方放弃了关联关系的维护权，将维护权交给了many方的关联属性
-    //一旦one方放弃了维护权，则不能再设置@JoinColumn注解
+    //mappedBy的设置表示当前的one方放弃了关联关系的维护权，将维护权交给了many方的关联属性；一旦one方放弃了维护权，则不能再使用@JoinColumn注解。
     @OneToMany(targetEntity = Minister.class, cascade = CascadeType.ALL, mappedBy = "country")
     //@JoinColumn(name="countryId")
     private Set<Minister> ministers;

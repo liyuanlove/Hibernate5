@@ -68,7 +68,7 @@ public class MyTest {
             //第二次查询
             Country country2 = session.get(Country.class, 2);
             System.out.println("country2 = " + country2);
-            //清空session缓存
+            //清空Session缓存
             session.clear();
             //第三次查询
             Country country3 = session.get(Country.class, 2);
@@ -99,11 +99,13 @@ public class MyTest {
             Country country2 = session.get(Country.class, 2);
             Set<Minister> ministers2 = country2.getMinisters();
             System.out.println("ministers2.size = " + ministers2.size());
-            //清空session缓存
+            //清空Session缓存
             session.clear();
             //第三次查询
-            //类缓存对象存放在专门的一个称为实体区域的缓存中，缓存的内容为对象的详情
-            //集合缓存对象存放在专门的一个称为集合区域的缓存中，缓存的内容为集合中所包含对象的id
+            /*
+             * 类缓存对象存放在专门的一个称为实体区域的缓存中，缓存的内容为对象的详情；
+             * 集合缓存对象存放在专门的一个称为集合区域的缓存中，缓存的内容为集合中所包含对象的id。
+             */
             Country country3 = session.get(Country.class, 2);
             Set<Minister> ministers3 = country3.getMinisters();
             System.out.println("ministers3.size = " + ministers3.size());

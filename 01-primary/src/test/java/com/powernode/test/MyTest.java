@@ -26,15 +26,13 @@ public class MyTest {
             System.out.println("save()之前，student = " + student);
             /*
              * save()方法执行的过程：
-             * 1)向MySQL发送一条信息，告诉MySQL我要执行插入了，MySQL生成一个id，传送给我。
-             * 2)接收到MySQL发送来的id，并使用该id初始化student对象的id属性。
-             * 3)现在的student对象已经具有id，那么session缓存就可以管理它了：
-             * 将student的id作为key，student对象的引用作为value，放入到session缓存中。
-             * 注意：session缓存的本质，实际是一个Map，其key为被管理对象的id，value为被管理对象的引用。
-             * 也就是说，只有id属性不为null的对象才有可能被session管理。
-             * 一个对象被session管理，就意味着，这个对象被放入到了session缓存这个Map中。
+             * 1)向MySQL发送一条信息，告诉MySQL要执行插入了，MySQL生成一个id，传回来。
+             * 2)接收到MySQL传回来的id，并使用该id初始化Student对象的id属性。
+             * 3)现在的Student对象已经具有id，那么Session缓存就可以管理它了：将Student对象的id作为key，Student对象的引用作为value，放入到Session缓存中。
+             * 注意：Session缓存的本质，实际是一个Map，其key为被管理对象的id，value为被管理对象的引用。也就是说，只有id属性不为null的对象才有可能被Session管理。
+             * 一个对象被Session管理，就意味着这个对象被放入到了Session缓存这个Map中。
              * 当对象由持久态转换为游离态时，实际就是将Map中的该对象删除了。
-             * 当对象由游离态转换为持久态时，实际就是先将该对象放入到session的这个Map中，再对其进行修改。
+             * 当对象由游离态转换为持久态时，实际就是先将该对象放入到Session的这个Map中，再对其进行修改。
              */
             session.save(student);
             System.out.println("save()之后，student = " + student);
